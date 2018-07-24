@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Popup, Segment, Container,Button, Header, Loader } from 'semantic-ui-react'
+import { Grid, Popup, Segment, Container,Button, Header } from 'semantic-ui-react'
 
 class Routes extends Component{
     constructor(props){
