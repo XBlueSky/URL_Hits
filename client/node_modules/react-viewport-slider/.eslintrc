@@ -1,0 +1,19 @@
+{
+  "root": true,
+  "parser": "babel-eslint",
+  "extends": [
+    "standard",
+    "standard-react",
+    "prettier",
+    "prettier/react"
+  ],
+  "globals": {
+    "afterEach": false,
+    "beforeAll": false,
+    "beforeEach": false,
+    "describe": false,
+    "expect": false,
+    "it": false,
+    "Image": false
+  }
+}

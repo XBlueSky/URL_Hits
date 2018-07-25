@@ -44,18 +44,17 @@ class Routes extends Component{
     }
     render(){
         return(     
-            <Popup position='bottom center'
+            <Popup position='bottom left'
                 trigger={<div align="center"><h3 onClick={() => this.scrollToAnchor(this.props.url)} >{this.props.url}</h3></div>}
                 content={
                     <Container>
-                        <Grid columns='equal'>
+                        <Grid columns={3} textAlign="center">
                             <Grid.Row >
                                 <Grid.Column >
                                     <Segment vertical textAlign='center'><Header as='h2' color='blue'>Before</Header></Segment>
                                     {this.state.ref.map(ref =>
                                     <Segment textAlign='center' vertical key={ref.ref}>
                                         <Button
-                                            size='large'
                                             color='blue'
                                             content={ref.ref}
                                             onClick={() => this.handleClick(ref.ref)}
@@ -67,11 +66,11 @@ class Routes extends Component{
                                     )}    
                                 </Grid.Column>
                                 <Grid.Column verticalAlign="middle" textAlign="center">
-                                    <Segment  textAlign="center" vertical circular inverted>
-                                        <Header 
-                                            as='h2' 
-                                            inverted="true"
+                                    <Segment  textAlign="center" inverted Raised>
+                                        <Header   
+                                            as='h3' 
                                             content={this.state.url}
+                                            inverted
                                             subheader={this.state.clicks}                     
                                         />
                                     </Segment>
@@ -81,7 +80,6 @@ class Routes extends Component{
                                     {this.state.des.map(des =>
                                         <Segment textAlign='center' vertical key={des.des}>
                                             <Button
-                                                size='large'
                                                 color='red'
                                                 content={des.des}
                                                 onClick={() => this.handleClick(des.des)}
@@ -101,7 +99,7 @@ class Routes extends Component{
                     this.getRoute(this.props.url);
                     this.setState({clicks: this.props.clicks});
                 }}
-                size='huge'
+                size='small'
             />  
         );
     }

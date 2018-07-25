@@ -27,6 +27,7 @@ router.get('/category/:time',function(req,res){
     var month = req.params.time.substring(0, 6);
     Category
     .find({month: month}, {_id: 0, category: 1})
+    .sort({category : 1})
     .exec(function(err, docs){
         if(err) console.log(err);
         else{
@@ -75,13 +76,31 @@ router.get('/:interval/:time',function(req,res){
 
     switch(req.params.interval){
         case 'day':
+            var data = [];
             Day
             .find({day: req.params.time}, {_id: 0, url: 1, clicktimes: 1})
             .limit(100)
+            .sort({clicktimes: -1})
             .exec(function(err, docs){
                 if(err) console.log(err);
                 else{
-                    res.json(docs);
+                    Day
+                    .find({day: (parseInt(req.params.time)-1).toString()}, {_id: 0, url: 1, clicktimes: 1})
+                    .limit(100)
+                    .sort({clicktimes: -1})
+                    .exec(function(err, pres){
+                        docs.forEach(function(docValue, docIndex) {
+                            pres.forEach(function(preValue, preIndex) {
+                                if (docValue.url === preValue.url){
+                                    docs[docIndex].change = docIndex - preIndex;
+                                }
+                            });
+                        });
+                        docs.forEach(e => {
+                            data.push({url: e.url, clicktimes: e.clicktimes, change: e.change});
+                        })
+                        res.json(data);
+                    });
                 }
             });
             break;
@@ -93,6 +112,7 @@ router.get('/:interval/:time',function(req,res){
             Week
             .find({week: week}, {_id: 0, url: 1, clicktimes: 1})
             .limit(100)
+            .sort({clicktimes: -1})
             .exec(function(err, docs){
                 if(err) console.log(err);
                 else{
@@ -105,6 +125,7 @@ router.get('/:interval/:time',function(req,res){
             Month
             .find({month: month}, {_id: 0, url: 1, clicktimes: 1, category: 1})
             .limit(100)
+            .sort({clicktimes: -1})
             .exec(function(err, docs){
                 if(err) console.log(err);
                 else{
