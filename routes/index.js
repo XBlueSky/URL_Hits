@@ -141,6 +141,7 @@ router.get('/month/:time/:cate',function(req,res){
     var category = req.params.cate == 'null' ? null : req.params.cate;
     Month
     .find({month: month, category: category}, {_id: 0, url: 1, clicktimes: 1, category: 1})
+    .limit(100)
     .exec(function(err, docs){
         if(err) console.log(err);
         else{
