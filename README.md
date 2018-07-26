@@ -13,6 +13,7 @@ And in Frontend may have to install these component
 $ npm install recharts
 $ npm i semantic-ui-react
 $ npm i react-calendar
+$ npm i react-viewport-slider
 ```
 
 ## Run
