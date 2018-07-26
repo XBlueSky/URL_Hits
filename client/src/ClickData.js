@@ -42,12 +42,15 @@ class ClickData extends Component{
         .then(res => res.json())
         .then(Cate => {
             var cate = [];
-            Cate[0].category.forEach(item => {
-                cate.push({key: item, value: item, text: item});
-            });
-            cate.push({key: "All", value: "All", text: "All"});
-            cate.push({key: "Other", value: "Other", text: "Other"});
-            cate.sort(function(a,b) {return (a.key > b.key) ? 1 : ((b.key > a.key) ? -1 : 0);});
+            if (typeof Cate[0] === "undefined") cate = undefined;
+            else{
+                Cate[0].category.forEach(item => {
+                    cate.push({key: item, value: item, text: item});
+                });
+                cate.push({key: "All", value: "All", text: "All"});
+                cate.push({key: "Other", value: "Other", text: "Other"});
+                cate.sort(function(a,b) {return (a.key > b.key) ? 1 : ((b.key > a.key) ? -1 : 0);});
+            }
             this.setState({cate: cate});
         });
     }

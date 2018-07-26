@@ -20,7 +20,7 @@ class App extends Component{
                 <Slider.Item style={{ backgroundColor: '#a2d7c7' }}>
                     <div className="title">URL Hits.</div>
                 </Slider.Item>
-                <Slider.Item style={{ backgroundColor: '#353330' }}>
+                <Slider.Item style={{ backgroundColor: '#FFA69E' }}>
                     <Segment>
                         <Calendar
                             onChange={this.onChange}
