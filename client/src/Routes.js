@@ -39,68 +39,60 @@ class Routes extends Component{
             if(anchorElement) { anchorElement.scrollIntoView({behavior: 'auto', block: 'start'}); }
         }
     }
-    sleep (time) {
-        return new Promise((resolve) => setTimeout(resolve, time));
-    }
     render(){
         return(     
             <Popup position='bottom left'
                 trigger={<div align="center"><h3 onClick={() => this.scrollToAnchor(this.props.url)} >{this.props.url}</h3></div>}
-                content={
-                    <Container>
-                        <Grid columns={3} textAlign="center">
-                            <Grid.Row >
-                                <Grid.Column >
-                                    <Segment vertical textAlign='center'><Header as='h2' color='blue'>Before</Header></Segment>
-                                    {this.state.ref.map(ref =>
-                                    <Segment textAlign='center' vertical key={ref.ref}>
-                                        <Button
-                                            color='blue'
-                                            content={ref.ref}
-                                            onClick={() => this.handleClick(ref.ref)}
-                                            icon='chain'
-                                            label={{ as: 'a', basic: true, color: 'blue', content: ref.times }}
-                                            labelPosition='right'
-                                        />
-                                    </Segment>
-                                    )}    
-                                </Grid.Column>
-                                <Grid.Column verticalAlign="middle" textAlign="center">
-                                    <Segment  textAlign="center" inverted Raised>
-                                        <Header   
-                                            as='h3' 
-                                            content={this.state.url}
-                                            inverted
-                                            subheader={this.state.clicks}                     
-                                        />
-                                    </Segment>
-                                </Grid.Column>
-                                <Grid.Column>
-                                    <Segment vertical textAlign='center'><Header as='h2' color='red'>After</Header></Segment>
-                                    {this.state.des.map(des =>
-                                        <Segment textAlign='center' vertical key={des.des}>
-                                            <Button
-                                                color='red'
-                                                content={des.des}
-                                                onClick={() => this.handleClick(des.des)}
-                                                icon='chain'
-                                                label={{ as: 'a', basic: true, color: 'red', content: des.times }}
-                                                labelPosition='right'
-                                            />
-                                        </Segment>
-                                    )}    
-                                </Grid.Column>
-                            </Grid.Row>
-                        </Grid>
-                    </Container>
-                }
                 on='click'
                 onOpen={()=>{
                     this.getRoute(this.props.url);
                     this.setState({clicks: this.props.clicks});
                 }}
-                size='small'
-            />  
+                flowing
+            >  
+                <Grid columns={3} padded>
+                    <Grid.Column>
+                        <Segment vertical textAlign='center'><Header as='h2' color='blue'>Before</Header></Segment>
+                        {this.state.ref.map(ref =>
+                        <Segment textAlign='center' vertical key={ref.ref}>
+                            <Button
+                                color='blue'
+                                content={ref.ref}
+                                onClick={() => this.handleClick(ref.ref)}
+                                icon='chain'
+                                label={{ as: 'a', basic: true, color: 'blue', content: ref.times }}
+                                labelPosition='right'
+                            />
+                        </Segment>
+                        )}    
+                    </Grid.Column>
+                    <Grid.Column  verticalAlign="middle" textAlign="center">
+                        <Segment  textAlign="center" inverted Raised>
+                            <Header   
+                                as='h3' 
+                                content={this.state.url}
+                                inverted
+                                subheader={this.state.clicks}                     
+                            />
+                        </Segment>
+                    </Grid.Column>
+                    <Grid.Column >
+                        <Segment vertical textAlign='center'><Header as='h2' color='red'>After</Header></Segment>
+                        {this.state.des.map(des =>
+                            <Segment textAlign='center' vertical key={des.des}>
+                                <Button
+                                    color='red'
+                                    content={des.des}
+                                    onClick={() => this.handleClick(des.des)}
+                                    icon='chain'
+                                    label={{ as: 'a', basic: true, color: 'red', content: des.times }}
+                                    labelPosition='right'
+                                />
+                            </Segment>
+                        )}    
+                    </Grid.Column>
+                </Grid>
+            </Popup>
         );
     }
 }

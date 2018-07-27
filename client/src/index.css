@@ -41,7 +41,6 @@ body {
     letter-spacing: -1px;
     margin: 50px;
 }
-
 @keyframes heartbeat {
     0% {
       transform: scale(1);
