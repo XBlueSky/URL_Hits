@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Popup, Segment, Container,Button, Header } from 'semantic-ui-react'
+import { Grid, Popup, Segment,Container, Button, Header } from 'semantic-ui-react'
 
 class Routes extends Component{
     constructor(props){
@@ -50,8 +50,9 @@ class Routes extends Component{
                 }}
                 flowing
             >  
-                <Grid columns={3} padded>
-                    <Grid.Column>
+            <Container >
+                <Grid columns={3}>
+                    <Grid.Column >
                         <Segment vertical textAlign='center'><Header as='h2' color='blue'>Before</Header></Segment>
                         {this.state.ref.map(ref =>
                         <Segment textAlign='center' vertical key={ref.ref}>
@@ -66,8 +67,8 @@ class Routes extends Component{
                         </Segment>
                         )}    
                     </Grid.Column>
-                    <Grid.Column  verticalAlign="middle" textAlign="center">
-                        <Segment  textAlign="center" inverted Raised>
+                    <Grid.Column verticalAlign="middle" textAlign="center">
+                        <Segment textAlign="center" inverted Raised>
                             <Header   
                                 as='h3' 
                                 content={this.state.url}
@@ -92,6 +93,7 @@ class Routes extends Component{
                         )}    
                     </Grid.Column>
                 </Grid>
+                </Container>
             </Popup>
         );
     }
